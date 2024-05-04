@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
+// Aplikasi utama yang merupakan StatelesWidget
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const String appTitle = 'Kucing Cantik';
+    const String appTitle = 'Kucing Cantik'; // Judul aplikasi
     return MaterialApp(
       title: appTitle,
       home: Scaffold(
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.search),
               onPressed: () {
+                // Tambahkan logika pencarian di sini
               },
             ),
           ],
@@ -25,23 +27,24 @@ class MyApp extends StatelessWidget {
           child: Column(
             children: [
               ImageSection(
-                image: 'img/kucing1.png',
+                image: 'img/kucing1.png', // Gambar kucing
               ),
               TitleSection(
-                name: 'Kucing Manis',
-                location: 'Kucing Gemoy',
+                name: 'Kucing Manis', // Nama kucing
+                location: 'Kucing Gemoy', // Lokasi kucing
               ),
-              ButtonSection(),
-              EditTextSection(),
+              ButtonSection(), // Bagian tombol
+              EditTextSection(), // Bagian edit teks
             ],
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 129, 225, 129), // Background color
+        backgroundColor: Color.fromARGB(255, 129, 225, 129), // Warna latar belakang
       ),
     );
   }
 }
 
+// Bagian judul yang merupakan StatelessWidget
 class TitleSection extends StatelessWidget {
   const TitleSection({
     super.key,
@@ -49,8 +52,8 @@ class TitleSection extends StatelessWidget {
     required this.location,
   });
 
-  final String name;
-  final String location;
+  final String name; // Nama kucing
+  final String location; // Lokasi kucing
 
   @override
   Widget build(BuildContext context) {
@@ -65,14 +68,14 @@ class TitleSection extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    name,
+                    name, // Nama kucing
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 Text(
-                  location,
+                  location, // Lokasi kucing
                   style: const TextStyle(
                     color: Color.fromARGB(255, 3, 2, 2),
                   ),
@@ -91,12 +94,13 @@ class TitleSection extends StatelessWidget {
   }
 }
 
+// Bagian tombol yang merupakan StatelessWidget
 class ButtonSection extends StatelessWidget {
   const ButtonSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Theme.of(context).primaryColor;
+    final Color color = Theme.of(context).primaryColor; // Warna tema
     return SizedBox(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -122,6 +126,7 @@ class ButtonSection extends StatelessWidget {
   }
 }
 
+// Tombol dengan teks yang merupakan StatelessWidget
 class ButtonWithText extends StatelessWidget {
   const ButtonWithText({
     super.key,
@@ -130,9 +135,9 @@ class ButtonWithText extends StatelessWidget {
     required this.label,
   });
 
-  final Color color;
-  final IconData icon;
-  final String label;
+  final Color color; // Warna tombol
+  final IconData icon; // Icon tombol
+  final String label; // Label tombol
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +149,7 @@ class ButtonWithText extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 8),
           child: Text(
-            label,
+            label, // Label tombol
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w400,
@@ -157,6 +162,7 @@ class ButtonWithText extends StatelessWidget {
   }
 }
 
+// Bagian edit teks yang merupakan StatefulWidget
 class EditTextSection extends StatefulWidget {
   const EditTextSection({super.key});
 
@@ -164,9 +170,10 @@ class EditTextSection extends StatefulWidget {
   State<EditTextSection> createState() => _EditTextSectionState();
 }
 
+// State dari EditTextSection
 class _EditTextSectionState extends State<EditTextSection> {
-  late TextEditingController _controller;
-  late String _description;
+  late TextEditingController _controller; // Controller untuk TextField
+  late String _description; // Deskripsi kucing
 
   @override
   void initState() {
@@ -182,6 +189,7 @@ class _EditTextSectionState extends State<EditTextSection> {
     super.dispose();
   }
 
+  // Fungsi untuk menyimpan teks yang diedit
   void _saveText() {
     setState(() {
       _description = _controller.text;
@@ -197,17 +205,17 @@ class _EditTextSectionState extends State<EditTextSection> {
           TextField(
             controller: _controller,
             decoration: const InputDecoration(
-              labelText: 'Edit Description',
+              labelText: 'Edit Description', // Label TextField
               border: OutlineInputBorder(),
             ),
           ),
           ElevatedButton(
-            onPressed: _saveText,
-            child: const Text('Save Description'),
+            onPressed: _saveText, // Aksi ketika tombol ditekan
+            child: const Text('Save Description'), // Label tombol
           ),
           const SizedBox(height: 20),
           Text(
-            'Description: $_description',
+            'Description: $_description', // Deskripsi kucing
             style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
@@ -218,15 +226,16 @@ class _EditTextSectionState extends State<EditTextSection> {
   }
 }
 
+// Bagian gambar yang merupakan StatelessWidget
 class ImageSection extends StatelessWidget {
   const ImageSection({super.key, required this.image});
 
-  final String image;
+  final String image; // Gambar kucing
 
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      image,
+      image, // Gambar kucing
       width: 600,
       height: 240,
       fit: BoxFit.cover,
